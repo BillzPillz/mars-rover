@@ -18,6 +18,6 @@ describe('filterCommands', () => {
 
   test('should return empty array if only empty string is supplied', () => {
     const result = filterCommands('')
-    expect(result).toEqual([])
+    expect(result).toEqual([''])
   })
 })

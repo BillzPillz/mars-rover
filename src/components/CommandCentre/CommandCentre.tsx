@@ -22,33 +22,43 @@ const CommandCentre = ({ rovers, setUpdatedRovers, obstacles }: IPropTypes) => {
   const [commands, setCommands] = useState<IIndexedState>({})
   const [errors, setErrors] = useState<IIndexedState>({})
 
-  const commandRover = (index: number): void => {
-    const filteredCommands: string[] = filterCommands(commands[index])
-    if (!filteredCommands.length) {
-      updateErrors(index, 'Please enter a valid command')
-      return
-    }
-
-    const obstructions = obstacles ? [...obstacles, ...rovers] : rovers
-    const updatedRover = updateRoversLocation(filteredCommands, rovers[index], obstructions)
+  const commandRovers = (index?: number): void => {
+    const allIndexes = Object.keys(commands).map(i => Number(i))
+    // If no unique index is supplied, run all commands
+    const indexes = index ? [index] : allIndexes
+    const errorMessage = 'Please enter a valid command'
     const updatedRovers = [...rovers]
-    // Replace relevant rover in the array with updated rover
-    updatedRovers.splice(index, 1, updatedRover)
+    const updatedCommands = { ...commands }
+    let updatedErrors = { ...errors }
+
+    indexes.forEach(i => {
+      const filteredCommands = filterCommands(commands[i])
+
+      if (!filteredCommands.length) {
+        updatedErrors = { ...updatedErrors, [i]: errorMessage }
+        return
+      }
+
+      // merge updated rovers with obstacles to ensure no clash
+      const obstructions = obstacles ? [...obstacles, ...updatedRovers] : updatedRovers
+      const updatedRover = updateRoversLocation(filteredCommands, rovers[i], obstructions)
+
+      // Replace relevant rover in the array with updated rover
+      updatedRovers.splice(i, 1, updatedRover)
+
+      // Delete commands and errors once rover is updated
+      delete updatedCommands[i]
+      delete updatedErrors[i]
+    })
 
     setUpdatedRovers(updatedRovers)
-    // clear input and errors
-    updateCommands(index, '')
-    if (errors[index]) updateErrors(index, '')
+    setCommands(updatedCommands)
+    setErrors(updatedErrors)
   }
 
   const updateCommands = (index: number, value: string): void => {
     const updatedCommands = { ...commands, [index]: value }
     setCommands(updatedCommands)
-  }
-
-  const updateErrors = (index: number, value: string): void => {
-    const updatedErrors = { ...errors, [index]: value }
-    setErrors(updatedErrors)
   }
 
   return (
@@ -69,7 +79,7 @@ const CommandCentre = ({ rovers, setUpdatedRovers, obstacles }: IPropTypes) => {
               data-testid={`rover-input-${index}`}
               onChange={e => updateCommands(index, e.target.value)}
             />
-            <button className={styles['button']} onClick={() => commandRover(index)} data-testid={`rover-button-${index}`}>
+            <button className={styles['button']} onClick={() => commandRovers(index)} data-testid={`rover-button-${index}`}>
               Command
             </button>
             {errorMessage && <span className={styles['error']}>{errorMessage}</span>}
@@ -77,6 +87,11 @@ const CommandCentre = ({ rovers, setUpdatedRovers, obstacles }: IPropTypes) => {
           </div>
         )
       })}
+      <div className={styles['command-all-wrapper']}>
+        <button className={styles['command-all-button']} onClick={() => commandRovers()}>
+          Command all rovers
+        </button>
+      </div>
     </div>
   )
 }
