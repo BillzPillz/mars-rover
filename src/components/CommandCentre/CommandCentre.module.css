@@ -3,21 +3,14 @@
   flex-wrap: wrap;
   justify-content: space-between;
   width: 500px;
-  margin: 25px auto;
-}
-
-.button {
-  height: 30px;
-  cursor: pointer;
-  background: #fff;
-  border: 1px solid #666;
-  transition: all 0.2s;
+  padding: 25px;
 }
 
 .input {
   width: 60%;
   height: 30px;
   border: 1px solid #666;
+  border-radius: 5px;
 }
 
 .title {
@@ -54,15 +47,21 @@
   width: 100%;
   border-top: 1px solid;
   padding-top: 25px;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
+.button,
 .command-all-button {
   height: 30px;
   cursor: pointer;
   background: #fff;
   border: 1px solid #666;
   transition: all 0.2s;
+  border-radius: 5px;
+}
+
+.command-all-button {
+  height: 40px;
 }
 
 .command-all-button:hover,

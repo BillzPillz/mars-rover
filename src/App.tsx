@@ -7,6 +7,8 @@ import CommandCentre from './components/CommandCentre'
 import useGrid from './hooks/useGrid'
 // Types
 import { IGridItem } from './types/shared.types'
+// Styles
+import styles from './App.module.css'
 
 function App() {
   // These values determine the rover and obstacle count, e.g. 4 rovers & 10 obstacles.
@@ -17,8 +19,10 @@ function App() {
 
   return (
     <div className="App">
-      {rovers && <CommandCentre rovers={rovers} setUpdatedRovers={setUpdatedRovers} obstacles={obstacles} />}
-      {locations && <Mars locations={locations} rovers={rovers} obstacles={obstacles} />}
+      <main className={styles['wrapper']}>
+        {rovers && <CommandCentre rovers={rovers} setUpdatedRovers={setUpdatedRovers} obstacles={obstacles} />}
+        {locations && <Mars locations={locations} rovers={rovers} obstacles={obstacles} />}
+      </main>
     </div>
   )
 }
