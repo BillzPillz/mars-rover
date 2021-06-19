@@ -1,8 +1,14 @@
+// Packages
 import React from 'react'
-import './App.css'
+// Components
+import Mars from './components/Mars'
+// Hooks
+import useGrid from './hooks/useGrid'
 
 function App() {
-  return <div className="App">Hello world</div>
+  const { locations } = useGrid()
+
+  return <>{locations && <Mars locations={locations} />}</>
 }
 
 export default App
