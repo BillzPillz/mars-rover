@@ -4,7 +4,7 @@ import verifyItemCount from './verifyItemCount'
 import CONSTANTS from './constants'
 
 describe('verifyItemCount', () => {
-  const {MAX_ROVERS, MAX_OBSTACLES, MIN_OBSTACLES, MIN_ROVERS} = CONSTANTS
+  const { MAX_ROVERS, MAX_OBSTACLES, MIN_OBSTACLES, MIN_ROVERS } = CONSTANTS
 
   test('should return rover count supplied if valid', () => {
     const roverCount = 4
@@ -17,7 +17,7 @@ describe('verifyItemCount', () => {
     const result = verifyItemCount(obstacleCount)
     expect(result).toBe(obstacleCount)
   })
-  
+
   test('should limit rovers to 10', () => {
     const roverCount = 11
     const result = verifyItemCount(roverCount, true)
@@ -29,7 +29,7 @@ describe('verifyItemCount', () => {
     const result = verifyItemCount(roverCount, true)
     expect(result).toBe(MIN_ROVERS)
   })
-    
+
   test('should limit obstacles to 25', () => {
     const obstacleCount = 26
     const result = verifyItemCount(obstacleCount)

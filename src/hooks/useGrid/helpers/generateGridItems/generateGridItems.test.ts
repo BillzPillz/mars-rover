@@ -14,8 +14,8 @@ describe('generateGridItems', () => {
         x: 1,
         y: 2,
         id: 'r-1',
-        direction: 1
-      }
+        direction: 1,
+      },
     ]
 
     const obstacleCount = 10

@@ -1,4 +1,4 @@
-import { IGridItem } from '../../../../types/shared.types';
+import { IGridItem } from '../../../../types/shared.types'
 
 export interface IDirectionMap {
   [key: number]: string
@@ -9,9 +9,9 @@ const getCurrentPosition = (rover: IGridItem) => {
     1: 'N',
     2: 'E',
     3: 'S',
-    4: 'W'
+    4: 'W',
   }
-   
+
   return `${rover.x}:${rover.y}:${directionMap[rover.direction]}`
 }
 
