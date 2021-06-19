@@ -2,11 +2,13 @@
 
 This project is based on the Mars Rover Kata and has a simple front-end to help visualise the Rovers movements.
 
+The solution can be seen live here: https://billynm.github.io/mars-rover/
+
 ## Pre-requisites
 
 To run this project, you’ll need to have Node >= 10 on your local machine.
 
-## Quick start
+## Local start
 
 To run the application, firstly install the dependencies:
 
