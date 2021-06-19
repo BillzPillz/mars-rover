@@ -27,7 +27,7 @@ const Mars = (props: IPropTypes) => {
         const coordinates = `${location.x}:${location.y}`
 
         return (
-          <div key={coordinates} className={styles['location']}>
+          <div key={coordinates} className={styles['location']} data-testid="location">
             {hasRover ? <Rover id={rovers.findIndex(r => hasObstruction(location, [r])) + 1} /> : hasObstacle ? <Obstacle /> : coordinates}
           </div>
         )

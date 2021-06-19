@@ -11,7 +11,7 @@ interface IPropTypes {
 
 const Rover = (props: IPropTypes) => {
   return (
-    <div className={styles['rover']}>
+    <div className={styles['rover']} data-testid="rover">
       <span className={styles['id']}>{props.id}</span>
       <RoverIcon />
     </div>

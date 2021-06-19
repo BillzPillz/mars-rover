@@ -32,6 +32,7 @@ const CommandCentre = ({ rovers, setUpdatedRovers, obstacles }: IPropTypes) => {
     const obstructions = obstacles ? [...obstacles, ...rovers] : rovers
     const updatedRover = updateRoversLocation(filteredCommands, rovers[index], obstructions)
     const updatedRovers = [...rovers]
+    // Replace relevant rover in the array with updated rover
     updatedRovers.splice(index, 1, updatedRover)
 
     setUpdatedRovers(updatedRovers)
@@ -40,12 +41,12 @@ const CommandCentre = ({ rovers, setUpdatedRovers, obstacles }: IPropTypes) => {
     if (errors[index]) updateErrors(index, '')
   }
 
-  const updateCommands = (index: number, value: string) => {
+  const updateCommands = (index: number, value: string): void => {
     const updatedCommands = { ...commands, [index]: value }
     setCommands(updatedCommands)
   }
 
-  const updateErrors = (index: number, value: string) => {
+  const updateErrors = (index: number, value: string): void => {
     const updatedErrors = { ...errors, [index]: value }
     setErrors(updatedErrors)
   }
@@ -58,7 +59,7 @@ const CommandCentre = ({ rovers, setUpdatedRovers, obstacles }: IPropTypes) => {
         const errorMessage = errors[index] ?? ''
 
         return (
-          <div className={styles['control']} key={rover.id}>
+          <div className={styles['control']} key={rover.id} data-testid="rover-control">
             <h2 className={styles['title']}>Rover {index + 1}</h2>
             <input
               className={styles['input']}

@@ -1,5 +1,12 @@
+// Packages
 import React from 'react'
+import { render, screen } from '@testing-library/react'
+// Components
+import App from './App'
 
-test('renders learn react link', () => {
-  expect(true).toBeTruthy()
+describe('App', () => {
+  test('renders without exploding', () => {
+    render(<App />)
+    expect(screen.queryAllByTestId('location')).toHaveLength(100)
+  })
 })

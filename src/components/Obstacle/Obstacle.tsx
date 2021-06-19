@@ -7,7 +7,7 @@ import styles from './Obstacle.module.css'
 
 const Obstacle = () => {
   return (
-    <span className={styles['rover']}>
+    <span className={styles['rover']} data-testid="obstacle">
       <Rock />
     </span>
   )
