@@ -18,7 +18,7 @@ function App() {
   const rovers = updatedRovers ?? initialRovers
 
   return (
-    <div className="App">
+    <div className={styles['app']}>
       <main className={styles['wrapper']}>
         {rovers && <CommandCentre rovers={rovers} setUpdatedRovers={setUpdatedRovers} obstacles={obstacles} />}
         {locations && <Mars locations={locations} rovers={rovers} obstacles={obstacles} />}

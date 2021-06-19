@@ -1,7 +1,13 @@
-.wrapper {
-  max-width: 1000px;
-  margin: 50px auto 0px;
+.app {
+  height: 100vh;
   display: flex;
-  align-items: flex-start;
-  background-color: #dadde2;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+.wrapper {
+  display: flex;
+  border: 1px solid var(--mars);
+  box-shadow: 0 10px 6px -6px #777;
 }

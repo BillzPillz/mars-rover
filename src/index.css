@@ -3,6 +3,9 @@
 :root {
   /* https://www.crispedge.com/faq/what-is-the-color-code-for-mars */
   --mars: #ad6242;
+  --mars-hover: #b94f21;
+  --dark-grey: #666;
+  --light-grey: #efefef;
 }
 
 * {
@@ -12,4 +15,5 @@
 body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
+  background-color: #dadde2;
 }
