@@ -20,10 +20,14 @@ interface IIndexedState {
 
 const CommandCentre = ({ rovers, setUpdatedRovers, obstacles }: IPropTypes) => {
   const [commands, setCommands] = useState<IIndexedState>({})
+  const [errors, setErrors] = useState<IIndexedState>({})
 
   const commandRover = (index: number): void => {
     const filteredCommands: string[] = filterCommands(commands[index])
-    if (!filteredCommands.length) return
+    if (!filteredCommands.length) {
+      updateErrors(index, 'Please enter a valid command')
+      return
+    }
 
     const obstructions = obstacles ? [...obstacles, ...rovers] : rovers
     const updatedRover = updateRoversLocation(filteredCommands, rovers[index], obstructions)
@@ -31,7 +35,9 @@ const CommandCentre = ({ rovers, setUpdatedRovers, obstacles }: IPropTypes) => {
     updatedRovers.splice(index, 1, updatedRover)
 
     setUpdatedRovers(updatedRovers)
+    // clear input and errors
     updateCommands(index, '')
+    if (errors[index]) updateErrors(index, '')
   }
 
   const updateCommands = (index: number, value: string) => {
@@ -39,11 +45,17 @@ const CommandCentre = ({ rovers, setUpdatedRovers, obstacles }: IPropTypes) => {
     setCommands(updatedCommands)
   }
 
+  const updateErrors = (index: number, value: string) => {
+    const updatedErrors = { ...errors, [index]: value }
+    setErrors(updatedErrors)
+  }
+
   return (
     <div className={styles['command-centre']}>
       {rovers.map((rover, index) => {
         const currentPosition = getCurrentPosition(rover)
         const inputValue = commands[index] ?? ''
+        const errorMessage = errors[index] ?? ''
 
         return (
           <div className={styles['control']} key={rover.id}>
@@ -58,6 +70,7 @@ const CommandCentre = ({ rovers, setUpdatedRovers, obstacles }: IPropTypes) => {
             <button className={styles['button']} onClick={() => commandRover(index)}>
               Command
             </button>
+            {errorMessage && <span className={styles['error']}>{errorMessage}</span>}
             <span className={styles['location']}>Current location: {currentPosition}</span>
           </div>
         )
