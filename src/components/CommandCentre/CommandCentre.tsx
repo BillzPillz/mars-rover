@@ -66,9 +66,10 @@ const CommandCentre = ({ rovers, setUpdatedRovers, obstacles }: IPropTypes) => {
               id="command"
               type="text"
               value={inputValue}
+              data-testid={`rover-input-${index}`}
               onChange={e => updateCommands(index, e.target.value)}
             />
-            <button className={styles['button']} onClick={() => commandRover(index)}>
+            <button className={styles['button']} onClick={() => commandRover(index)} data-testid={`rover-button-${index}`}>
               Command
             </button>
             {errorMessage && <span className={styles['error']}>{errorMessage}</span>}
