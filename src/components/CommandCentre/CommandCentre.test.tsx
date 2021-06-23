@@ -30,9 +30,9 @@ describe('CommandCentre', () => {
   test('should call setUpdatedRovers when valid command is provided', () => {
     render(<CommandCentre rovers={mockRovers} setUpdatedRovers={setUpdatedRovers} />)
 
-    const input = screen.queryByTestId('rover-input-1')
+    const input = screen.getByTestId('rover-input-1')
     fireEvent.change(input, { target: { value: 'mmm' } })
-    const button = screen.queryByTestId('rover-button-1')
+    const button = screen.getByTestId('rover-button-1')
     fireEvent.click(button)
 
     expect(setUpdatedRovers).toHaveBeenCalled()
@@ -42,11 +42,11 @@ describe('CommandCentre', () => {
     setUpdatedRovers.mockClear()
     render(<CommandCentre rovers={mockRovers} setUpdatedRovers={setUpdatedRovers} />)
 
-    const input = screen.queryByTestId('rover-input-1')
+    const input = screen.getByTestId('rover-input-1')
     fireEvent.change(input, { target: { value: 'xgh' } })
-    const button = screen.queryByTestId('rover-button-1')
+    const button = screen.getByTestId('rover-button-1')
     fireEvent.click(button)
-    const error = screen.queryByText('Please enter a valid command')
+    const error = screen.getByText('Please enter a valid command')
 
     expect(error).toBeInTheDocument()
   })
